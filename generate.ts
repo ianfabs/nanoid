@@ -19,4 +19,4 @@ import format from "./format.ts";
  * @function
  */
 export const generate = format.bind(null, random);
-export default genereate;
+export default generate;
