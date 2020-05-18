@@ -18,5 +18,5 @@ import customRandom from "./customRandom.ts";
  * @name generate
  * @function
  */
-export const customAlphabet = customRandom.bind(null, random);
+export const customAlphabet = (alphabet: string, size: number) => customRandom(random, alphabet, size);
 export default customAlphabet;

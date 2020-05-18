@@ -1,10 +1,10 @@
-import { generate } from "../mod.ts";
+import { customAlphabet } from "../mod.ts";
 
-const customAlphabet = '1234567890abcdef-';
-const idLength = 21;
+const alphabet = '1234567890abcdef-';
+const idLength = 18;
 
 function User(name: string, email?: string) {
-  this.id = generate(customAlphabet, idLength);
+  this.id = customAlphabet(alphabet, idLength);
   this.name = name;
   this.email = email;
 }
