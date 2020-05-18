@@ -1,7 +1,7 @@
 import random from "./random.ts";
 import url from "./url.ts";
 
-export const nanoid = (size: number = 12): string => {
+export const nanoid = (size: number = 21): string => {
   let id: string = "";
   const bytes: Uint32Array = random(size);
   // Compact alternative for `for (var i = 0; i < size; i++)`
@@ -17,5 +17,5 @@ export default nanoid;
 
 export * from "./random.ts";
 export * from "./url.ts";
-export * from "./generate.ts";
-export * from "./format.ts";
+export * from "./customAlphabet.ts";
+export * from "./customRandom.ts";

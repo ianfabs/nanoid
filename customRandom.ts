@@ -1,5 +1,6 @@
 export type RandomGenerator = (size: number) => Uint8Array | Uint16Array | Uint32Array;
-export const format = (random: RandomGenerator, alphabet: string, size: number) => {
+
+export const customRandom = (random: RandomGenerator, alphabet: string, size: number) => {
   const mask = (2 << Math.log(alphabet.length - 1) / Math.LN2) - 1;
   const step = -~(1.6 * mask * size / alphabet.length);
   let id = "";
@@ -15,4 +16,4 @@ export const format = (random: RandomGenerator, alphabet: string, size: number) 
   }
 }
 
-export default format;
+export default customRandom;
