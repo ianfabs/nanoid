@@ -168,8 +168,8 @@ If you want to change the ID's alphabet or length
 you can use the low-level `generate` module.
 
 ```js
-import generate from "https://deno.land/x/nanoid/generate.ts";
-model.id = generate('1234567890abcdef', 10) //=> "4f90d13a42"
+import customAlphabet from "https://deno.land/x/nanoid/customAlphabet.ts";
+model.id = customAlphabet('1234567890abcdef', 10) //=> "4f90d13a42"
 ```
 
 Alphabet must contain 256 symbols or less.
@@ -178,9 +178,9 @@ Otherwise, the generator will not be secure.
 Asynchronous API is also available:
 
 ```js
-import {generate} from "https://deno.land/x/nanoid/async.ts";
+import {customAlphabet} from "https://deno.land/x/nanoid/async.ts";
 async function createUser () {
-  user.id = await generate('1234567890abcdef', 10)
+  user.id = await customAlphabet('1234567890abcdef', 10)
 }
 ```
 
@@ -190,7 +190,7 @@ You can replace the default safe random generator using the `format` module.
 For instance, to use a seed-based generator.
 
 ```js
-import format from "https://deno.land/x/nanoid/format.ts";
+import customRandom from "https://deno.land/x/nanoid/customRandom.ts";
 
 function random (size) {
   const result = []
@@ -200,7 +200,7 @@ function random (size) {
   return result
 }
 
-format(random, "abcdef", 10) //=> "fbaefaadeb"
+customRandom(random, "abcdef", 10) //=> "fbaefaadeb"
 ```
 
 `random` callback must accept the array size and return an array
@@ -210,23 +210,23 @@ If you want to use the same URL-friendly symbols with `format`,
 you can get the default alphabet from the `url` file.
 
 ```js
-import format from "https://deno.land/x/nanoid/format.ts";
+import customRandom from "https://deno.land/x/nanoid/customRandom.ts";
 import url from "https://deno.land/x/nanoid/url.ts";
 
-format(random, chars, 10) //=> "93ce_Ltuub"
+customRandom(random, chars, 10) //=> "93ce_Ltuub"
 ```
 
 Asynchronous API is also available:
 
 ```js
-import format from 'nanoid/async/format';
-import url from 'nanoid/url';
+import customRandom from 'https://deno.land/x/nanoid/async.ts';
+import url from 'https://deno.land/x/nanoid/url.ts';
 
 function random (size) {
-  return new Promise(…)
+  return new Promise(/*…*/)
 }
 
 async function createUser () {
-  user.id = await format(random, url, 10)
+  user.id = await customRandom(random, url, 10)
 }
 ```

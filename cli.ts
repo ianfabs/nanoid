@@ -3,7 +3,7 @@
 @author Ian Fabs
 */
 import nanoid from "./mod.ts";
-import generate from "./generate.ts"
+import customAlphabet from "./customAlphabet.ts"
 import url from "./url.ts";
 import { parse } from "https://deno.land/std/flags/mod.ts";
 // import { red, bold } from "https://deno.land/std/fmt/colors.ts";
@@ -43,8 +43,9 @@ if (flags.h || flags.help) {
   const equivalent = (a: string, b: string): boolean => JSON.stringify(a.split('').sort()) === JSON.stringify(b.split('').sort());
   const size = flags.s ?? flags.size;
   const alphabet = flags.a ?? flags.alphabet;
-  const id = alphabet && !equivalent(alphabet, url) ? generate(alphabet, size ?? 12) : nanoid(size);
+  const id = alphabet && !equivalent(alphabet, url) ? customAlphabet(alphabet, size ?? 12) : nanoid(size);
 
   log(id);
 }
+
 Deno.stdin.close();

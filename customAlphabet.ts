@@ -1,5 +1,5 @@
 import random from "./random.ts";
-import format from "./format.ts";
+import customRandom from "./customRandom.ts";
 /**
  * Low-level function to change alphabet and ID size.
  *
@@ -18,5 +18,5 @@ import format from "./format.ts";
  * @name generate
  * @function
  */
-export const generate = format.bind(null, random);
-export default generate;
+export const customAlphabet = (alphabet: string, size: number) => customRandom(random, alphabet, size);
+export default customAlphabet;
