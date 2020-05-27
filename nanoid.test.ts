@@ -1,10 +1,3 @@
-import {
-  red,
-  green,
-  white,
-  gray,
-  bold,
-} from "https://deno.land/std/fmt/colors.ts";
 import { expect } from "https://deno.land/x/expect/mod.ts";
 import { nanoid, urlAlphabet } from "./mod.ts";
 const { test } = Deno;
@@ -17,7 +10,9 @@ test({
       expect(id).toHaveLength(21);
       expect(typeof id).toEqual("string");
       for (let char of id) {
-        expect(urlAlphabet).toContain(char);
+        // Have to spread this into an array because expect doesn't expect 
+        // the parameter to be a string.
+        expect([...urlAlphabet]).toContain(char);
       }
     }
   },
