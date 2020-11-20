@@ -4,7 +4,7 @@ A port of [nanoid] to Deno
 A tiny, secure, URL-friendly, unique string ID generator for JavaScript.
 
 ```js
-import nanoid from "https://deno.land/x/nanoid/mod.ts"
+import { nanoid } from "https://deno.land/x/nanoid/mod.ts"
 nanoid() //=> "lQLTBJKVRCuc"
 ```
 
@@ -70,7 +70,7 @@ The main module uses URL-friendly symbols (`A-Za-z0-9_-`) and returns an ID
 with 21 characters (to have a collision probability similar to UUID v4).
 
 ```js
-import nanoid from "https://deno.land/x/nanoid/mod.ts"
+import { nanoid } from "https://deno.land/x/nanoid/mod.ts"
 nanoid() //=> "lQLTBJKVRCuc"
 ```
 
@@ -120,7 +120,7 @@ $ deno run https://deno.land/x/nanoid/cli.ts
 ### Installation
 
 ```sh
-$ deno install nanoid https://deno.land/x/nanoid/cli.ts
+$ deno install --name nanoid https://deno.land/x/nanoid/cli.ts
 ```
 
 ### Usage
@@ -157,7 +157,7 @@ If we will use asynchronous API for random generator,
 another code could be executed during the entropy collection.
 
 ```js
-import nanoid from "https://deno.land/x/nanoid/async.ts";
+import { nanoid } from "https://deno.land/x/nanoid/async.ts";
 
 async function createUser () {
   user.id = await nanoid();
@@ -171,8 +171,9 @@ If you want to change the ID's alphabet or length
 you can use the low-level `generate` module.
 
 ```js
-import customAlphabet from "https://deno.land/x/nanoid/customAlphabet.ts";
-model.id = customAlphabet('1234567890abcdef', 10) //=> "4f90d13a42"
+import { customAlphabet } from "https://deno.land/x/nanoid/customAlphabet.ts";
+const nanoid = customAlphabet('1234567890abcdef', 10)
+nanoid()  // => "4f90d13a42"
 ```
 
 Alphabet must contain 256 symbols or less.
@@ -181,9 +182,10 @@ Otherwise, the generator will not be secure.
 Asynchronous API is also available:
 
 ```js
-import {customAlphabet} from "https://deno.land/x/nanoid/async.ts";
-async function createUser () {
-  user.id = await customAlphabet('1234567890abcdef', 10)
+import { customAlphabet } from "https://deno.land/x/nanoid/async.ts";
+const nanoid = await customAlphabet('1234567890abcdef', 10);
+async function createUser() {
+  let id = nanoid();
 }
 ```
 
@@ -193,17 +195,18 @@ You can replace the default safe random generator using the `format` module.
 For instance, to use a seed-based generator.
 
 ```js
-import customRandom from "https://deno.land/x/nanoid/customRandom.ts";
+import { customRandom } from "https://deno.land/x/nanoid/customRandom.ts";
 
 function random (size) {
   const result = []
   for (let i = 0; i < size; i++) {
     result.push(randomByte())
   }
-  return result
+  return result;
 }
 
-customRandom(random, "abcdef", 10) //=> "fbaefaadeb"
+const nanoid = customRandom(random, "abcdef", 10);
+nanoid(); // => "fbaefaadeb"
 ```
 
 `random` callback must accept the array size and return an array
@@ -213,23 +216,24 @@ If you want to use the same URL-friendly symbols with `format`,
 you can get the default alphabet from the `url` file.
 
 ```js
-import customRandom from "https://deno.land/x/nanoid/customRandom.ts";
-import url from "https://deno.land/x/nanoid/url.ts";
+import { customRandom } from "https://deno.land/x/nanoid/customRandom.ts";
+import { urlAlphabet } from "https://deno.land/x/nanoid/urlAlphabet.ts";
 
-customRandom(random, chars, 10) //=> "93ce_Ltuub"
+const nanoid = customRandom(random, chars, 10);
+nanoid(); // => "93ce_Ltuub"
 ```
 
 Asynchronous API is also available:
 
 ```js
-import customRandom from 'https://deno.land/x/nanoid/async.ts';
-import url from 'https://deno.land/x/nanoid/url.ts';
+import { customRandom } from 'https://deno.land/x/nanoid/async.ts';
+import { urlAlphabet } from "https://deno.land/x/nanoid/urlAlphabet.ts";
 
 function random (size) {
-  return new Promise(/*…*/)
+  return Promise.resolve(/*…*/)
 }
-
+const nanoid = await customRandom(random, url, 10);
 async function createUser () {
-  user.id = await customRandom(random, url, 10)
+  let id = nanoid(); // => "93ce_Ltuub"
 }
 ```
