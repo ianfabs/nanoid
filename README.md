@@ -126,21 +126,24 @@ $ deno install nanoid https://deno.land/x/nanoid/cli.ts
 ### Usage
 
 ```
-Usage
-  $ nanoid
-Options
-  --alphabet, -a  Use a different alphabet to generate the id
-  --size, -s      Generate an id of a different size
-  --help, -h      Display this help page
-Examples
-  $ nanoid
-  eJgswWA5uW8I
-  $ nanoid --size 32
-  xgX77wBFcY1lso9R12Y2lHrluUbLjAPV
-  $ nanoid -s16
-  YZ-MJ4oXIGUK2edY
-  $ nanoid --alphabet "_~0123456789abcdefghijklmnopqrstuvwxyz"
-  pejh~ujt2lln
+  Usage:   nanoid
+  Version: v2.0.0
+
+  Description:
+
+    A CLI for generating cryptographically-secure random IDs.
+
+  Options:
+
+    -h, --help                         - Show this help.                                                             
+    -V, --version                      - Show the version number for this program.                                   
+    -s, --size      <size:number>      - The desired length of IDs to be generated.                                  
+    -a, --alphabet  <alphabet:string>  - The alphabet that IDs should be generated with.                             
+    -n, --number    <n:number>         - The number of IDs to generate, if you would like more than one  (Default: 1)
+
+  Commands:
+
+    completions  - Generate shell completions.
 ```
 
 ## API
