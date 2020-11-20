@@ -1,9 +1,14 @@
-import nid from "./mod.ts";
-import ca from "./customAlphabet.ts";
-import { customRandom as cr, RandomGenerator } from "./customRandom.ts";
+import {
+  customAlphabet as __customAlphabet,
+  customRandom as __customRandom,
+  CustomRandomGenerator,
+  nanoid as __nanoid,
+} from "./mod.ts";
 
-export const nanoid = async (size: number) => nid(size);
-export const generated = async (alphabet: string, size: number) => ca(alphabet, size);
-export const customRandom = async (random: RandomGenerator, alphabet: string, size: number) => cr(random, alphabet, size);
-
-export default nanoid;
+export const nanoid = async (size: number) => __nanoid(size);
+export const customAlphabet = async (alphabet: string, size: number) => __customAlphabet(alphabet, size);
+export const customRandom = async (
+  random: CustomRandomGenerator,
+  alphabet: string,
+  size: number,
+) => __customRandom(random, alphabet, size);
