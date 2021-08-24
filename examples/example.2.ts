@@ -1,6 +1,6 @@
 import { customAlphabet } from "../mod.ts";
 
-const alphabet = '1234567890abcdef-';
+const alphabet = "1234567890abcdef-";
 const idLength = 18;
 
 function User(name: string, email?: string) {

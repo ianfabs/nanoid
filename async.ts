@@ -6,7 +6,8 @@ import {
 } from "./mod.ts";
 
 export const nanoid = async (size: number) => __nanoid(size);
-export const customAlphabet = async (alphabet: string, size: number) => __customAlphabet(alphabet, size);
+export const customAlphabet = async (alphabet: string, size: number) =>
+  __customAlphabet(alphabet, size);
 export const customRandom = async (
   random: CustomRandomGenerator,
   alphabet: string,

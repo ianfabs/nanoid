@@ -13,11 +13,12 @@ import { customRandom } from "./customRandom.ts";
  *
  * @example
  * import { customAlphabet } from "https://deno.land/x/nanoid/customAlphabet.ts";
- * 
+ *
  * const alphabet = '0123456789абвгдеё';
  * const nanoid = customAlphabet(alphabet, 5);
- * 
+ *
  * console.log(nanoid()); // => "8ё56а"
  *
  */
-export const customAlphabet = (alphabet: string, size: number) => customRandom(random, alphabet, size);
+export const customAlphabet = (alphabet: string, size: number) =>
+  customRandom(random, alphabet, size);
