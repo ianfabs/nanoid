@@ -56,6 +56,7 @@ There are three main differences between Nano ID and UUID v4:
 *See a good article about random generators theory:
 [Secure random values (in Node.js)]*
 
+[Secure random values (in Node.js)]: https://gist.github.com/joepie91/7105003c3b26e65efcea63f3db82dfba
 
 ### Unpredictability
 
